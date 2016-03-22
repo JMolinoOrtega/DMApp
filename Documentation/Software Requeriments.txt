@@ -1,0 +1,8 @@
+001 - The system should generate random treasures 
+002 - The system should generate individual objects
+003 - The system should add value to treasures that do not reach a minimum value
+004 - The system should set a minimum value depending on the value of challenge
+005 - The system should account the value of the treasure in gold coins
+006 - The system should generate report of the generated treasure in portable format
+007 - The system should load external information for the generate treasures
+008 - The system should save generated treasures 

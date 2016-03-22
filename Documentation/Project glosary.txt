@@ -1,0 +1,15 @@
+D001 - Treasure: Collection of objects and coins obtained after overcoming a challenge.
+D002 - Challenge: Test of a certain level that must be overcome.
+D003 - Object: Item that a character can use.
+D004 - Magic Object: Item with magic properties.
+D005 - Weapon: Item that a character can use and produce damage. 
+D006 - Armor: Item that use character for defense hiself. Can be armor or shield.
+D007 - Potion and Oil: Bottle with liquid inside. A character is used to make a profit.
+D008 - Scroll: Paper roll with an engraved spell. A character uses it to launch the inscribed spell.
+D009 - Wand: Magical object. It has fifty charges a spell and there's only up to level three 
+D010 - Ring: Magical object that is placed on the finger. Provides benefits 
+D011 - Gem: Valuable gemstone
+D012 - Art piece: Valuable object
+D013 - Rod: Magical objet that is provides benefits
+D014 - Staff: Similar to wand except the number of charges, number of spells, and level for this spells
+D015 - Coin: Small metal object that can be platinum, gold, silver or copper
