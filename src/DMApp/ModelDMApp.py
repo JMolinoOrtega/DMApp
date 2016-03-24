@@ -5,6 +5,8 @@ Created on Thu Mar 24 14:38:44 2016
 @author: Jose Molino Ortega
 """
 
+import random
+
 class Coin:
     typeCoin = "" #Platinum, gold, silver or copper
     value = 0
@@ -151,31 +153,60 @@ class Treasure:
     def setItems(self, items):
         self.items = items
         
-    def generateTreasure(challenge):
+    def generateTreasure(self, challenge):
         print ("Generating treasure")
 
-    def generateMagicObject(fname, typeMagic):
+    def generateMagicObject(self, fname, typeMagic):
         print ("Generating magic object")
         
-    def classObjectMagic(typeMagic):
+    def classObjectMagic(self, typeMagic):
         print ("Selecting class of magic object")
         
-    def generateObject(fname, numberOfObjects):
+    def generateObject(self, fname, numberOfObjects):
         print ("Generating objects")
         
-    def generateWeapon(fname):
+    def generateWeapon(self, fname):
         print ("Generating weapon")
         
-    def generateArmor(fname):
+    def generateArmor(self, fname):
         print ("Generating armor")
         
-    def generateCoins(fname, challenge):
+    def generateCoins(self, fname, challenge):
         print ("Generating coins")
+        valueCoin = 0        
+        infile = open("library/gc"+fname, "r")
+        for i in range(challenge):
+            line = infile.readline()
+        line = line.split(':')
+        for i in range(int(line[1])):
+            valueCoin = valueCoin + random.randint(1,int(line[2]))
+        valueCoin = valueCoin*int(line[3])
+        c = Coin()
+        c.setTypeCoin(fname)
+        c.setValue(valueCoin)
+        return c
         
-    def minimumValue(challenge):
+        
+    def minimumValue(self, challenge):
         print ("Returning minimum value")
+        infile = open("library/mvt", "r")
+        for i in range(challenge):
+            line = infile.readline()
+        line = line.split(':')
+        return int((line[1]))
         
-    def diferenceValue(challenge):
+    def diferenceValue(self, challenge):
         print ("Calculating diference of actual value with the minimum value")
+        rest = self.value - self.minimumValue(challenge)
+        if rest < 0:        
+            self.setValue(self.value - rest)
+        
+        
+        
+if __name__ == "__main__":
+    t = Treasure()
+    ppt = t.generateCoins("platinum", 20)
+    print (ppt.getTypeCoin())
+    print (ppt.getValue())
         
         
