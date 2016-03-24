@@ -13,3 +13,4 @@ D012 - Art piece: Valuable object
 D013 - Rod: Magical objet that is provides benefits
 D014 - Staff: Similar to wand except the number of charges, number of spells, and level for this spells
 D015 - Coin: Small metal object that can be platinum, gold, silver or copper
+D016 - Wonderful items: magic items that have special effects

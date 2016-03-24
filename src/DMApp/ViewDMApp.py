@@ -16,6 +16,8 @@ class MainWindow(QtGui.QMainWindow):
         
     def initUI(self):
         
+        
+        
         #Create of a widget
         widget = QtGui.QWidget()
         self.setCentralWidget(widget)
@@ -50,6 +52,7 @@ class MainWindow(QtGui.QMainWindow):
         #Joint the widgets in the leftLayout
         leftLayout.addWidget(selectChallenge)
         leftLayout.addWidget(listObjects)
+
         
         
         #-------------rigthLayout-----------------------
@@ -90,33 +93,34 @@ class MainWindow(QtGui.QMainWindow):
         self.show()
         
         
-   
+    #Define actions
     def createActions(self):
         #File
-        self.openAct = QtGui.QAction("&Open treasure", self, shortcut=QtGui.QKeySequence.New, statusTip="Open a existing treasure", triggered=self.newFile)        
+        self.openAct = QtGui.QAction("&Open treasure", self, shortcut="Ctrl+O", statusTip="Open a existing treasure", triggered=self.openFile)        
         
         #No magic        
-        self.objectAct = QtGui.QAction("&Mundane object", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate mundane object", triggered=self.newFile)
-        self.gemAct = QtGui.QAction("&Gemstone", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate gemstone", triggered=self.newFile)
-        self.artAct = QtGui.QAction("&Art piece", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate art piece", triggered=self.newFile)
-        self.weaponAct = QtGui.QAction("&Weapon", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate non magical weapon", triggered=self.newFile)
-        self.armorAct = QtGui.QAction("&Armor", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate non magical armor", triggered=self.newFile)
+        self.objectAct = QtGui.QAction("&Mundane object", self, shortcut="Ctrl+M", statusTip="Generate mundane object", triggered=self.objectGen)
+        self.gemAct = QtGui.QAction("&Gemstone", self, shortcut="Ctrl+G", statusTip="Generate gemstone", triggered=self.gemGen)
+        self.artAct = QtGui.QAction("&Art piece", self, shortcut="Ctrl+A", statusTip="Generate art piece", triggered=self.artGen)
+        self.weaponAct = QtGui.QAction("&Weapon", self, shortcut="Ctrl+W", statusTip="Generate non magical weapon", triggered=self.weaponGen)
+        self.armorAct = QtGui.QAction("&Armor", self, shortcut="Ctrl+D", statusTip="Generate non magical armor", triggered=self.armorGen)
+        self.coinAct = QtGui.QAction("&Coins", self, shortcut="Ctrl+C", statusTip="Generate coins", triggered=self.coinGen)
         
         #Magic
-        self.potionOrOilAct = QtGui.QAction("&Potion or Oil", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate potion or oil", triggered=self.newFile)
-        self.scrollAct = QtGui.QAction("&Scroll", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate scroll", triggered=self.newFile)
-        self.wandAct = QtGui.QAction("&Wand", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate wand", triggered=self.newFile)
-        self.ringAct = QtGui.QAction("&Ring", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate magic ring", triggered=self.newFile)
-        self.rodAct = QtGui.QAction("&Rod", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate magic rod", triggered=self.newFile)
-        self.staffAct = QtGui.QAction("&Staff", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate magic staff", triggered=self.newFile)
-        self.wonderfulAct = QtGui.QAction("&Wonderful item", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate magic wonderful object", triggered=self.newFile)
-        self.magicWeaponAct = QtGui.QAction("&Weapon", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate magic weapon", triggered=self.newFile)   
-        self.magicArmorAct = QtGui.QAction("&Armor", self, shortcut=QtGui.QKeySequence.New, statusTip="Generate a magic armor", triggered=self.newFile)
+        self.potionOrOilAct = QtGui.QAction("&Potion or Oil", self, shortcut="Ctrl+Shift+P", statusTip="Generate potion or oil", triggered=self.pOOilGen)
+        self.scrollAct = QtGui.QAction("&Scroll", self, shortcut="Ctrl+Shift+S", statusTip="Generate scroll", triggered=self.scrollGen)
+        self.wandAct = QtGui.QAction("&Wand", self, shortcut="Ctrl+Shift+V", statusTip="Generate wand", triggered=self.wandGen)
+        self.ringAct = QtGui.QAction("&Ring", self, shortcut="Ctrl+Shift+R", statusTip="Generate magic ring", triggered=self.ringGen)
+        self.rodAct = QtGui.QAction("&Rod", self, shortcut="Ctrl+Shift+B", statusTip="Generate magic rod", triggered=self.rodGen)
+        self.staffAct = QtGui.QAction("&Staff", self, shortcut="Ctrl+Shift+F", statusTip="Generate magic staff", triggered=self.staffGen)
+        self.wonderfulAct = QtGui.QAction("&Wonderful item", self, shortcut="Ctrl+Shift+M", statusTip="Generate magic wonderful object", triggered=self.wonderGen)
+        self.magicWeaponAct = QtGui.QAction("&Weapon", self, shortcut="Ctrl+Shift+W", statusTip="Generate magic weapon", triggered=self.magicWeaponGen)   
+        self.magicArmorAct = QtGui.QAction("&Armor", self, shortcut="Ctrl+Shift+D", statusTip="Generate a magic armor", triggered=self.magicArmorGen)
      
         #Tools
-        self.preferenceAct = QtGui.QAction("&Preferences", self, shortcut=QtGui.QKeySequence.New, statusTip="Open preferences window", triggered=self.newFile)
+        self.preferenceAct = QtGui.QAction("&Preferences", self, shortcut="Ctrl+Alt+Shift+P", statusTip="Open preferences window", triggered=self.preferenceMenu)
              
-     
+    #Define menus
     def createMenus(self):
         #File menu
         self.fileMenu = self.menuBar().addMenu("&File")
@@ -129,6 +133,7 @@ class MainWindow(QtGui.QMainWindow):
         self.MenuNoMagic.addAction(self.artAct)
         self.MenuNoMagic.addAction(self.weaponAct)
         self.MenuNoMagic.addAction(self.armorAct)
+        self.MenuNoMagic.addAction(self.coinAct)
         
         #Magic objects menu
         self.MenuMagic = self.menuBar().addMenu("&Magic")
@@ -146,9 +151,73 @@ class MainWindow(QtGui.QMainWindow):
         self.toolsMenu = self.menuBar().addMenu("&Tools")
         self.toolsMenu.addAction(self.preferenceAct)
         
+    #Open a treasure file and load it items
+    def openFile(self):
+        print ("openFile is pushed")
+    
+    #Generate a mundane object
+    def objectGen(self):
+        print ("objectGen is pushed")
         
-    def newFile(self):
-        print ("Se ha pulsado nuevo")
+    #Generate a gemstone
+    def gemGen(self):
+        print ("gemGen is pushed")
+        
+    #Generate a art piece
+    def artGen(self):
+        print ("artGen is pushed")
+    
+    #Generate a non magical weapon
+    def weaponGen(self):
+        print ("weaponGen is pushed")
+    
+    #Generate a non magical armor
+    def armorGen(self):
+        print ("armorGen is pushed")
+        
+    #Generate random value for the type of coins
+    def coinGen(self):
+        print ("coinGen is pushed")
+        
+    #Generate potions or magic oils
+    def pOOilGen(self):
+        print ("Potion or Oil is pushed")
+        
+    #Generate scroll
+    def scrollGen(self):
+        print ("scrollGen is pushed")
+        
+    #Generate wand
+    def wandGen(self):
+        print ("wandGen is pushed")
+        
+    #Generate ring 
+    def ringGen(self):
+        print ("ringGen is pushed")        
+    
+    #Generate rod
+    def rodGen(self):
+        print ("rodGen is pushed")
+    
+    #Generate staff
+    def staffGen(self):
+        print ("staffGen is pushed")
+    
+    #Generate wonderful item
+    def wonderGen(self):
+        print ("wonderGen is pushed")
+        
+    #Generate magic weapon
+    def magicWeaponGen(self):
+        print ("magicWeaponGen is pushed")
+        
+    #Generate magic armor
+    def magicArmorGen(self):
+        print ("magicArmorGen is pushed")
+        
+    #Display the preference window
+    def preferenceMenu(self):
+        print ("preferenceMenu is pushed")
             
    
         
