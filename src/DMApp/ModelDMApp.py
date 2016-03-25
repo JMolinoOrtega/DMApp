@@ -66,6 +66,8 @@ class Armor(Object):
     typeArmor = ""
     ca = 0
     penalty = 0
+    desMax = 0
+    arcanFail = 0
     greatQuality = False
     
     def getTypeArmor(self):
@@ -80,6 +82,12 @@ class Armor(Object):
     def isGreatQuality(self):
         return self.greatQuality
         
+    def getDesMax(self):
+        return self.desMax
+    
+    def getArcanFail(self):
+        return self.arcanFail
+        
     def setTypeArmor(self, typeArmor):
         self.typeArmor = typeArmor
         
@@ -91,6 +99,12 @@ class Armor(Object):
         
     def setQuality(self, quality):
         self.greatQuality = quality
+        
+    def setDesMax(self, desMax):
+        self.desMax = desMax
+        
+    def setArcanFail(self, arcanFail):
+        self.arcanFail = arcanFail
         
 class MagicObject:
     name = ""
@@ -168,12 +182,87 @@ class Treasure:
     def generateWeapon(self, fname):
         print ("Generating weapon")
         
-    def generateArmor(self, fname):
+    def generateArmor(self, quality=False):
         print ("Generating armor")
+        listArmors = []
+        infile = open("library/armor", "r")
+        line = infile.readline()
+        for line in infile:
+            listArmors.append(line)
         
+        #Select a random armor
+        armor = random.sample(listArmors, 1)
+        armor = armor[0].split(':')
+        
+        #Create return armor
+        s = Armor()
+        s.setName(armor[1])
+        s.setCa(armor[3])
+        s.setTypeArmor(armor[0])
+        s.setPenalty(armor[5])
+        s.setDesMax(armor[4])
+        s.setArcanFail(armor[6])
+        s.setValue(armor[2])
+        s.setQuality(quality)
+        return s
+        
+    def generateShield(self, quality=False):
+        print ("Generating shield")
+        listShields = []
+        infile = open("library/shield", "r")
+        line = infile.readline()
+        for line in infile:
+            listShields.append(line)
+        
+        #Select a random shield
+        shield = random.sample(listShields, 1)
+        shield = shield[0].split(':')
+        
+        #Create return shield
+        s = Armor()
+        s.setName(shield[1])
+        s.setCa(shield[3])
+        s.setTypeArmor(shield[0])
+        s.setPenalty(shield[5])
+        s.setDesMax(shield[4])
+        s.setArcanFail(shield[6])
+        s.setValue(shield[2])
+        s.setQuality(quality)
+        return s
+        
+    def generateGemOrArt(self, fname):
+        print ("Generating gemstones or art pieces")
+        valueObject = 0
+        
+        #Generate random int for select the line that read
+        intRandom = random.randint(1,100)
+        validation = False
+        infile = open("library/"+fname, "r")
+        line = infile.readline()
+        
+        #While no match line, the loop continue. The library must have good structure for read
+        while validation==False:
+            line = line.split(':')            
+            if intRandom >= int(line[0]) and intRandom <= int(line[1]):
+                validation = True
+            else:
+                line = infile.readline()
+        for i in range(int(line[2])):
+            valueObject = valueObject + random.randint(1, int(line[3]))
+        valueObject = valueObject*int(line[4])
+        lineString = line[5].split(';')
+        name = random.sample(lineString, 1)
+        
+        #Create return object
+        b = Object()
+        b.setName(name)
+        b.setValue(valueObject)
+        return b
     def generateCoins(self, fname, challenge):
         print ("Generating coins")
-        valueCoin = 0        
+        valueCoin = 0  
+        
+        #fname is a type coin that generate
         infile = open("library/gc"+fname, "r")
         for i in range(challenge):
             line = infile.readline()
@@ -181,6 +270,8 @@ class Treasure:
         for i in range(int(line[1])):
             valueCoin = valueCoin + random.randint(1,int(line[2]))
         valueCoin = valueCoin*int(line[3])
+        
+        #Create return coin        
         c = Coin()
         c.setTypeCoin(fname)
         c.setValue(valueCoin)
@@ -205,8 +296,11 @@ class Treasure:
         
 if __name__ == "__main__":
     t = Treasure()
-    ppt = t.generateCoins("platinum", 20)
-    print (ppt.getTypeCoin())
-    print (ppt.getValue())
-        
+    shield = t.generateArmor()
+    print (shield.getName())
+    print (shield.getValue())
+    print (shield.getDesMax())
+    print (shield.getPenalty())
+    print (shield.getTypeArmor())
+    print (shield.getArcanFail())
         
