@@ -10,7 +10,7 @@ Arco corto:Marcial, a distancia:30:1d4:1d6:x3:Perforante
 Arco corto compuesto (Fue +0):Marcial, a distancia:75:1d4:1d6:x3:Perforante
 Arco corto compuesto (Fue +1):Marcial, a distancia:150:1d4:1d6:x3:Perforante
 Arco corto compuesto (Fue +2):Marcial, a distancia:225:1d4:1d6:x3:Perforante
-Honda:Sencilla, a distancia:-:1d3:1d4:x2:Contundente
+Honda:Sencilla, a distancia:0:1d3:1d4:x2:Contundente
 Arco largo:Marcial, a distancia:75:1d6:1d8:x3:Perforante
 Arco largo compuesto (Fue +0):Marcial, a distancia:100:1d6:1d8:x3:Perforante
 Arco largo compuesto (Fue +1):Marcial, a distancia:200:1d6:1d8:x3:Perforante

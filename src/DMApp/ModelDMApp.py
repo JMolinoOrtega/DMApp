@@ -41,14 +41,26 @@ class Object:
         
 class Weapon(Object):
     typeWeapon = ""
-    damage = ""
+    lDamage = "" #Little damage
+    mDamage = "" #Medium damage
+    critical = ""
+    typeDamage = ""
     greatQuality = False
     
     def getTypeWeapon(self):
         return self.typeWeapon
         
-    def getDamage(self):
-        return self.damage
+    def getlDamage(self):
+        return self.lDamage
+        
+    def getmDamage(self):
+        return self.mDamage
+        
+    def getCritical(self):
+        return self.critical
+        
+    def getTypeDamage(self):
+        return self.typeDamage
     
     def isGreatQuality(self):
         return self.greatQuality
@@ -56,8 +68,17 @@ class Weapon(Object):
     def setTypeWeapon(self, typeWeapon):
         self.typeWeapon = typeWeapon
         
-    def setDamage(self, damage):
-        self.damage = damage
+    def setLDamage(self, lDamage):
+        self.lDamage = lDamage
+        
+    def setMDamage(self, mDamage):
+        self.mDamage = mDamage
+        
+    def setCritical(self, critical):
+        self.critical = critical
+        
+    def setTypeDamage(self, typeDamage):
+        self.typeDamage = typeDamage
         
     def setQuality(self, quality):
         self.greatQuality = quality
@@ -179,8 +200,48 @@ class Treasure:
     def generateObject(self, fname, numberOfObjects):
         print ("Generating objects")
         
-    def generateWeapon(self, fname):
+    def generateWeapon(self, quality=False):
         print ("Generating weapon")
+        #Select a random weapon type
+        nRandom = random.randint(1,100)
+        if nRandom >= 1 and nRandom <= 70:
+            fname = "norareweapons"
+        elif nRandom >= 71 and nRandom <= 80:
+            fname = "rareweapons"
+        else:
+            fname = "distanceweapons"
+            
+        #Generate weapon
+        listWeapons = []
+        infile = open("library/"+fname, "r")
+        line = infile.readline()
+        for line in infile:
+            listWeapons.append(line)
+            
+        #Select a random weapon
+        weapon = random.sample(listWeapons, 1)
+        weapon = weapon[0].split(':')
+        
+        #Create return weapon
+        w = Weapon()
+        w.setName(weapon[0])
+        w.setTypeWeapon(weapon[1])
+        w.setValue(int(weapon[2]))
+        w.setLDamage(weapon[3])
+        w.setMDamage(weapon[4])
+        w.setCritical(weapon[5])
+        w.setTypeDamage(weapon[6])
+        w.setQuality(quality)
+        
+        
+        #If is great quality the price increases
+        if w.isGreatQuality() == True:
+            newValue = w.getValue()+300
+            w.setValue(int(newValue)) 
+        
+        return w
+            
+        
         
     def generateArmor(self, quality=False):
         print ("Generating armor")
@@ -202,8 +263,14 @@ class Treasure:
         s.setPenalty(armor[5])
         s.setDesMax(armor[4])
         s.setArcanFail(armor[6])
-        s.setValue(armor[2])
+        s.setValue(int(armor[2]))
         s.setQuality(quality)
+        
+        
+        #If is great quality the price increases
+        if s.isGreatQuality() == True:
+            s.setValue(s.getValue+150)        
+        
         return s
         
     def generateShield(self, quality=False):
@@ -228,6 +295,11 @@ class Treasure:
         s.setArcanFail(shield[6])
         s.setValue(shield[2])
         s.setQuality(quality)
+         
+        #If is great quality the price increases
+        if s.isGreatQuality() == True:
+            s.setValue(s.getValue+150)
+        
         return s
         
     def generateGemOrArt(self, fname):
@@ -296,11 +368,11 @@ class Treasure:
         
 if __name__ == "__main__":
     t = Treasure()
-    shield = t.generateArmor()
-    print (shield.getName())
-    print (shield.getValue())
-    print (shield.getDesMax())
-    print (shield.getPenalty())
-    print (shield.getTypeArmor())
-    print (shield.getArcanFail())
-        
+    weapon = t.generateWeapon(True)
+    print (weapon.getName())
+    print (weapon.getValue())
+    print (weapon.getlDamage())
+    print (weapon.getmDamage())
+    print (weapon.getTypeWeapon())
+    print (weapon.getTypeDamage())
+    print (weapon.getCritical())
