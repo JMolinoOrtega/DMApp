@@ -39,6 +39,15 @@ class Object:
     def setValue(self, value):
         self.value = value
         
+class Alchemist(Object):
+    amount = 0
+    
+    def getAmount(self):
+        return self.amount
+    
+    def setAmount(self, amount):
+        self.amount = amount
+        
 class Weapon(Object):
     typeWeapon = ""
     lDamage = "" #Little damage
@@ -197,9 +206,73 @@ class Treasure:
     def classObjectMagic(self, typeMagic):
         print ("Selecting class of magic object")
         
-    def generateObject(self, fname, numberOfObjects):
+    def generateObject(self):
         print ("Generating objects")
+        #Select a random object type
+        nRandom = random.randint(1,100)
+        if nRandom >= 1 and nRandom <= 17:
+            #Alchemist object
+            o = self.generateAlchemist()
+            return o
+        if nRandom >= 18 and nRandom <= 50:
+            #Armor object
+            o = self.generateArmor()
+            return o
+        if nRandom >= 51 and nRandom <= 83:
+            #Weapon object
+            o = self.generateWeapon()
+            return o
+        if nRandom >= 84:
+            #Mundane object
+            fname = "object"
         
+        #Generate mundane object            
+        listObjects = []
+        infile = open("library/" + fname, "r")
+        line = infile.readline()
+        for line in infile:
+            listObjects.append(line)
+            
+        #Select a random object
+        mObject = random.sample(listObjects, 1)
+        mObject = o[0].split(':')
+        
+        #Create return object
+        o = Object()
+        o.setName(mObject[0])
+        o.setValue(mObject[1])
+        
+        return o
+            
+        
+    def generateAlchemist(self):
+        fname = "alchemist" #Library file name
+        
+        #Generate alchemists
+        listAlchemist = []
+        infile = open("library/" + fname, "r")
+        line = infile.readline()
+        for line in infile:
+            listAlchemist.append(line)
+            
+        #Select a random alchemist
+        alchemist = random.sample(listAlchemist, 1)
+        alchemist = alchemist[0].split(':')
+        
+        #Number of objects
+        nObjects = alchemist[1].split('d')
+        num = 0        
+        for i in range(nObjects[0]):
+            num += random.randint(1, nObjects[1])
+        price = alchemist[2]*num
+
+        #Create return alchemist
+        a = Alchemist()
+        a.setName(alchemist[0])
+        a.setValue(price)
+        a.setAmount(num)            
+        
+    
     def generateWeapon(self, quality=False):
         print ("Generating weapon")
         #Select a random weapon type
@@ -226,6 +299,7 @@ class Treasure:
         w = Weapon()
         w.setName(weapon[0])
         w.setTypeWeapon(weapon[1])
+        print (w.getName())
         w.setValue(int(weapon[2]))
         w.setLDamage(weapon[3])
         w.setMDamage(weapon[4])
