@@ -205,7 +205,92 @@ class Treasure:
         
     def classObjectMagic(self, typeMagic):
         print ("Selecting class of magic object")
+        nRandom = random.randint(1,100)        
         
+        #Select type object depends magic power
+        if typeMagic is "minor":
+            if nRandom >= 1 and nRandom <= 4:
+                #Magic armor
+                fname = "minorArmor"
+            elif nRandom >= 5 and nRandom <= 9:
+                #Magic weapon
+                fname = "minorWeapon"
+            elif nRandom >= 10 and nRandom <= 44:
+                #Potion
+                fname = "minorPotion"
+            elif nRandom >= 45 and nRandom <= 46:
+                #Ring
+                fname = "minorRing"
+            elif nRandom >= 47 and nRandom <= 81:
+                #Scroll
+                fname = "minorScroll"
+            elif nRandom >= 82 and nRandom <= 91:
+                #Wand
+                fname = "minorWand"
+            elif nRandom >= 92 and nRandom <= 100:
+                #Wonderful item
+                fname = "minorWonderful"
+                
+        elif typeMagic is "medium":
+            if nRandom >= 1 and nRandom <= 10:
+                #Magic armor
+                fname = "mediumArmor"
+            elif nRandom >= 11 and nRandom <= 20:
+                #Magic weapon
+                fname = "mediumWeapon"
+            elif nRandom >= 21 and nRandom <= 30:
+                #Potion
+                fname = "mediumPotion"
+            elif nRandom >= 31 and nRandom <= 40:
+                #Ring
+                fname = "mediumRing"
+            elif nRandom >= 41 and nRandom <= 50:
+                #Rod
+                fname = "mediumRod"
+            elif nRandom >= 51 and nRandom <= 65:
+                #Scroll
+                fname = "mediumScroll"
+            elif nRandom >= 66 and nRandom <= 68:
+                #Staff
+                fname = "mediumStaff"
+            elif nRandom >= 69 and nRandom <= 83:
+                #Wand
+                fname = "mediumWand"
+            elif nRandom >= 84 and nRandom <= 100:
+                #Wonderful item
+                fname = "mediumWonderful"
+            
+        elif typeMagic is "major":
+            if nRandom >= 1 and nRandom <= 10:
+                #Magic armor
+                fname = "majorArmor"
+            elif nRandom >= 11 and nRandom <= 20:
+                #Magic weapon
+                fname = "majorWeapon"
+            elif nRandom >= 21 and nRandom <= 25:
+                #Potion
+                fname = "majorPotion"
+            elif nRandom >= 26 and nRandom <= 35:
+                #Ring
+                fname = "majorRing"
+            elif nRandom >= 36 and nRandom <= 45:
+                #Rod
+                fname = "majorRod"
+            elif nRandom >= 46 and nRandom <= 55:
+                #Scroll
+                fname = "majorScroll"
+            elif nRandom >= 56 and nRandom <= 75:
+                #Staff
+                fname = "majorStaff"
+            elif nRandom >= 76 and nRandom <= 80:
+                #Wand
+                fname = "majorWand"
+            elif nRandom >= 81 and nRandom <= 100:
+                #Wonderful item
+                fname = "majorWonderful"
+        return fname
+            
+            
     def generateObject(self):
         print ("Generating objects")
         #Select a random object type
@@ -214,15 +299,15 @@ class Treasure:
             #Alchemist object
             o = self.generateAlchemist()
             return o
-        if nRandom >= 18 and nRandom <= 50:
+        elif nRandom >= 18 and nRandom <= 50:
             #Armor object
             o = self.generateArmor()
             return o
-        if nRandom >= 51 and nRandom <= 83:
+        elif nRandom >= 51 and nRandom <= 83:
             #Weapon object
             o = self.generateWeapon()
             return o
-        if nRandom >= 84:
+        elif nRandom >= 84:
             #Mundane object
             fname = "object"
         
