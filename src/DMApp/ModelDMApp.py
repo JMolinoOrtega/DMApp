@@ -350,10 +350,11 @@ class Treasure:
         for i in range(nObjects[0]):
             num += random.randint(1, nObjects[1])
         price = alchemist[2]*num
+        name = str(num) + " " + alchemist[0]
 
         #Create return alchemist
         a = Alchemist()
-        a.setName(alchemist[0])
+        a.setName(name)
         a.setValue(price)
         a.setAmount(num)            
         
