@@ -202,6 +202,26 @@ class Treasure:
 
     def generateMagicObject(self, fname, typeMagic):
         print ("Generating magic object")
+        listOMagic = []
+        infile = open("library/" + fname, "r")
+        line = infile.readline()
+        for line in infile:
+            listOMagic.append(line)
+        
+        #Select a random shield
+        mObject = random.sample(listOMagic, 1)
+        mObject = mObject[0].split(':')
+        
+        #Create a return object
+        o = MagicObject()
+        o.setName(mObject[0])
+        o.setValue(int(mObject[1]))
+        o.setTypeMagic(typeMagic)
+        o.setPropertie(mObject[2])
+        o.setReference(mObject[3])
+        
+        return o
+        
         
     def classObjectMagic(self, typeMagic):
         print ("Selecting class of magic object")
@@ -212,38 +232,107 @@ class Treasure:
             if nRandom >= 1 and nRandom <= 4:
                 #Magic armor
                 fname = "minorArmor"
+                armorBase = self.generateArmor(True)
+                
+                magicArmor = self.generateMagicObject(fname, typeMagic)
+                armorBase.setName(armorBase.getName + ' ' + magicArmor.getName)
+                armorBase.setValue(armorBase.getValue + magicArmor.getValue)
+                
+                self.items.append(armorBase)
+                self.value += armorBase.value
+                
             elif nRandom >= 5 and nRandom <= 9:
                 #Magic weapon
                 fname = "minorWeapon"
+                weaponBase = self.generateWeapon(True)
+                
+                magicWeapon = self.generateMagicObject(fname, typeMagic)
+                weaponBase.setName(weaponBase.getName + ' ' + magicWeapon.getName)
+                weaponBase.setValue(weaponBase.getValue + magicWeapon.getValue)
+                
+                self.items.append(weaponBase)
+                self.value += weaponBase.value
+                
             elif nRandom >= 10 and nRandom <= 44:
                 #Potion
                 fname = "minorPotion"
+                potion = self.generateMagicObject(fname, typeMagic)
+                potion.setName(potion.getName + ' ' + "potion")
+                
+                self.items.append(potion)
+                self.value += potion.value
+                
             elif nRandom >= 45 and nRandom <= 46:
                 #Ring
                 fname = "minorRing"
+                ring = self.generateMagicObject(fname, typeMagic)
+                ring.setName(ring.getName + ' ' + "ring")                
+                
+                self.items.append(ring)
+                self.value += ring.value
+                
             elif nRandom >= 47 and nRandom <= 81:
                 #Scroll
                 fname = "minorScroll"
             elif nRandom >= 82 and nRandom <= 91:
                 #Wand
                 fname = "minorWand"
+                wand = self.generateMagicObject(fname, typeMagic)
+                wand.setName(wand.getName + ' ' + "wand")
+                
+                self.items.append(wand)
+                self.value += wand.value
             elif nRandom >= 92 and nRandom <= 100:
                 #Wonderful item
                 fname = "minorWonderful"
+                wonder = self.generateMagicObject(fname, typeMagic)
+                
+                self.items.append(wonder)
+                self.value += wonder.value
                 
         elif typeMagic is "medium":
             if nRandom >= 1 and nRandom <= 10:
                 #Magic armor
                 fname = "mediumArmor"
+                armorBase = self.generateArmor(True)
+                
+                magicArmor = self.generateMagicObject(fname, typeMagic)
+                armorBase.setName(armorBase.getName + ' ' + magicArmor.getName)
+                armorBase.setValue(armorBase.getValue + magicArmor.getValue)
+                
+                self.items.append(armorBase)
+                self.value += armorBase.value
+                
             elif nRandom >= 11 and nRandom <= 20:
                 #Magic weapon
                 fname = "mediumWeapon"
+                weaponBase = self.generateWeapon(True)
+                
+                magicWeapon = self.generateMagicObject(fname, typeMagic)
+                weaponBase.setName(weaponBase.getName + ' ' + magicWeapon.getName)
+                weaponBase.setValue(weaponBase.getValue + magicWeapon.getValue)
+                
+                self.items.append(weaponBase)
+                self.value += weaponBase.value
+                
             elif nRandom >= 21 and nRandom <= 30:
                 #Potion
                 fname = "mediumPotion"
+                potion = self.generateMagicObject(fname, typeMagic)
+                potion.setName(potion.getName + ' ' + "potion")
+                
+                self.items.append(potion)
+                self.value += potion.value
+                
             elif nRandom >= 31 and nRandom <= 40:
                 #Ring
                 fname = "mediumRing"
+                ring = self.generateMagicObject(fname, typeMagic)
+                ring.setName(ring.getName + ' ' + "ring")                
+                
+                self.items.append(ring)
+                self.value += ring.value
+                
             elif nRandom >= 41 and nRandom <= 50:
                 #Rod
                 fname = "mediumRod"
@@ -256,23 +345,63 @@ class Treasure:
             elif nRandom >= 69 and nRandom <= 83:
                 #Wand
                 fname = "mediumWand"
+                wand = self.generateMagicObject(fname, typeMagic)
+                wand.setName(wand.getName + ' ' + "wand")
+                
+                self.items.append(wand)
+                self.value += wand.value
+                
             elif nRandom >= 84 and nRandom <= 100:
                 #Wonderful item
                 fname = "mediumWonderful"
+                wonder = self.generateMagicObject(fname, typeMagic)
+                
+                self.items.append(wonder)
+                self.value += wonder.value
             
         elif typeMagic is "major":
             if nRandom >= 1 and nRandom <= 10:
                 #Magic armor
                 fname = "majorArmor"
+                armorBase = self.generateArmor(True)
+                
+                magicArmor = self.generateMagicObject(fname, typeMagic)
+                armorBase.setName(armorBase.getName + ' ' + magicArmor.getName)
+                armorBase.setValue(armorBase.getValue + magicArmor.getValue)
+                
+                self.items.append(armorBase)
+                self.value += armorBase.value
+                
             elif nRandom >= 11 and nRandom <= 20:
                 #Magic weapon
                 fname = "majorWeapon"
+                weaponBase = self.generateWeapon(True)
+                
+                magicWeapon = self.generateMagicObject(fname, typeMagic)
+                weaponBase.setName(weaponBase.getName + ' ' + magicWeapon.getName)
+                weaponBase.setValue(weaponBase.getValue + magicWeapon.getValue)
+                
+                self.items.append(weaponBase)
+                self.value += weaponBase.value
+                
             elif nRandom >= 21 and nRandom <= 25:
                 #Potion
                 fname = "majorPotion"
+                potion = self.generateMagicObject(fname, typeMagic)
+                potion.setName(potion.getName + ' ' + "potion")
+                
+                self.items.append(potion)
+                self.value += potion.value
+                
             elif nRandom >= 26 and nRandom <= 35:
                 #Ring
                 fname = "majorRing"
+                ring = self.generateMagicObject(fname, typeMagic)
+                ring.setName(ring.getName + ' ' + "ring")                
+                
+                self.items.append(ring)
+                self.value += ring.value
+                
             elif nRandom >= 36 and nRandom <= 45:
                 #Rod
                 fname = "majorRod"
@@ -285,9 +414,20 @@ class Treasure:
             elif nRandom >= 76 and nRandom <= 80:
                 #Wand
                 fname = "majorWand"
+                wand = self.generateMagicObject(fname, typeMagic)
+                wand.setName(wand.getName + ' ' + "wand")
+                
+                self.items.append(wand)
+                self.value += wand.value
+                
             elif nRandom >= 81 and nRandom <= 100:
                 #Wonderful item
                 fname = "majorWonderful"
+                wonder = self.generateMagicObject(fname, typeMagic)
+                
+                self.items.append(wonder)
+                self.value += wonder.value
+                
         return fname
             
             
