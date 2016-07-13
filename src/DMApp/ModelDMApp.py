@@ -197,8 +197,425 @@ class Treasure:
     def setItems(self, items):
         self.items = items
         
+    def calculateValue(self):
+        self.value = 0        
+        for i in self.items:
+            if type(i) is Coin:
+                if i.getTypeCoin() is "platinum":
+                    self.value += i.getValue()*10
+                elif i.getTypeCoin() is "gold":
+                    self.value += i.getValue()
+                elif i.getTypeCoin() is "silver":
+                    self.value += i.getValue()/10
+                elif i.getTypeCoin() is "copper":
+                    self.value += i.getValue()/100
+            else:
+                self.value += i.getValue()
+        
     def generateTreasure(self, challenge):
         print ("Generating treasure")
+        if challenge == 1:
+            #Coin
+            nRandom = random.randint(1,100)
+            if nRandom > 14:            
+                if nRandom >= 15 and nRandom <= 29:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 30 and nRandom <= 52:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 53 and nRandom <= 95:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            if nRandom > 90:            
+                if nRandom >= 91 and nRandom <= 95:
+                    fname = "gemstone"
+                    goa = self.generateGemOrArt(fname)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "artpiece"
+                    goa = self.generateGemOrArt(fname)
+                self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            if nRandom > 71:
+                if nRandom >= 72 and nRandom <= 95:
+                    o = self.generateObject()
+                    self.items.append(o)
+                elif nRandom >= 96 and nRandom <= 100:
+                    o = self.classObjectMagic("minor")
+                    self.items.append(o)
+                    
+        elif challenge == 2:
+            #Coin
+            nRandom = random.randint(1,100)
+            if nRandom > 13:            
+                if nRandom >= 14 and nRandom <= 23:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 24 and nRandom <= 43:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 44 and nRandom <= 95:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            if nRandom > 81:            
+                if nRandom >= 82 and nRandom <= 95:
+                    for i in range(random.randint(1,3)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 96 and nRandom <= 100:
+                    for i in range(random.randint(1,3)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            if nRandom > 49:
+                if nRandom >= 50 and nRandom <= 85:
+                    o = self.generateObject()
+                    self.items.append(o)
+                elif nRandom >= 86 and nRandom <= 100:
+                    o = self.classObjectMagic("minor")
+                    self.items.append(o)
+                    
+        elif challenge == 3:
+            #Coin
+            nRandom = random.randint(1,100)
+            if nRandom > 11:            
+                if nRandom >= 12 and nRandom <= 21:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 22 and nRandom <= 41:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 42 and nRandom <= 95:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            if nRandom > 77:            
+                if nRandom >= 78 and nRandom <= 95:
+                    for i in range(random.randint(1,3)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 96 and nRandom <= 100:
+                    for i in range(random.randint(1,3)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            if nRandom > 49:
+                if nRandom >= 50 and nRandom <= 79:
+                    for i in range(random.randint(1,3)):
+                        o = self.generateObject()
+                        self.items.append(o)
+                elif nRandom >= 80 and nRandom <= 100:
+                    o = self.classObjectMagic("minor")
+                    self.items.append(o)
+                    
+        elif challenge == 4:
+            #Coin
+            nRandom = random.randint(1,100)
+            if nRandom > 11:            
+                if nRandom >= 12 and nRandom <= 21:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 22 and nRandom <= 41:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 42 and nRandom <= 95:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            if nRandom > 70:            
+                if nRandom >= 71 and nRandom <= 95:
+                    for i in range(random.randint(1,4)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 96 and nRandom <= 100:
+                    for i in range(random.randint(1,3)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            if nRandom > 42:
+                if nRandom >= 43 and nRandom <= 62:
+                    for i in range(random.randint(1,4)):
+                        o = self.generateObject()
+                        self.items.append(o)
+                elif nRandom >= 63 and nRandom <= 100:
+                    o = self.classObjectMagic("minor")
+                    self.items.append(o)
+                    
+        elif challenge == 5:
+            #Coin
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 10:            
+                if nRandom >= 11 and nRandom <= 19:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 20 and nRandom <= 38:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 39 and nRandom <= 95:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 60:            
+                if nRandom >= 61 and nRandom <= 95:
+                    for i in range(random.randint(1,4)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 96 and nRandom <= 100:
+                    for i in range(random.randint(1,4)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 57:
+                if nRandom >= 58 and nRandom <= 67:
+                    for i in range(random.randint(1,4)):
+                        o = self.generateObject()
+                        self.items.append(o)
+                elif nRandom >= 68 and nRandom <= 100:
+                    for i in range(random.randint(1,3)):
+                        o = self.classObjectMagic("minor")
+                        self.items.append(o)
+                        
+        elif challenge == 6:
+            #Coin
+            nRandom = random.randint(1,100)
+            if nRandom > 10:            
+                if nRandom >= 11 and nRandom <= 18:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 19 and nRandom <= 37:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 38 and nRandom <= 95:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 96 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            if nRandom > 56:            
+                if nRandom >= 57 and nRandom <= 92:
+                    for i in range(random.randint(1,4)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 93 and nRandom <= 100:
+                    for i in range(random.randint(1,4)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            if nRandom > 54:
+                if nRandom >= 55 and nRandom <= 59:
+                    for i in range(random.randint(1,4)):
+                        o = self.generateObject()
+                        self.items.append(o)
+                elif nRandom >= 60 and nRandom <= 99:
+                    for i in range(random.randint(1,3)):
+                        o = self.classObjectMagic("minor")
+                        self.items.append(o)
+                elif nRandom == 100:
+                    for i in range(random.randint(1,1)):
+                        o = self.classObjectMagic("medium")
+                        self.items.append(o)
+        elif challenge == 7:
+            #Coin
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 11:            
+                if nRandom >= 12 and nRandom <= 18:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 19 and nRandom <= 35:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 36 and nRandom <= 93:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 94 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 48:            
+                if nRandom >= 49 and nRandom <= 88:
+                    for i in range(random.randint(1,4)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 89 and nRandom <= 100:
+                    for i in range(random.randint(1,4)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 51:
+                if nRandom >= 52 and nRandom <= 97:
+                    for i in range(random.randint(1,3)):
+                        o = self.classObjectMagic("minor")
+                        self.items.append(o)
+                elif nRandom >= 98 and nRandom <= 100:
+                    for i in range(random.randint(1,1)):
+                        o = self.classObjectMagic("medium")
+                        self.items.append(o)
+                        
+        elif challenge == 8:
+            #Coin
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 10:            
+                if nRandom >= 11 and nRandom <= 15:
+                    fname = "copper"                
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 16 and nRandom <= 29:
+                    fname = "silver"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 30 and nRandom <= 87:
+                    fname = "gold"
+                    c = self.generateCoins(fname, challenge)
+                elif nRandom >= 88 and nRandom <= 100:
+                    fname = "platinum"
+                    c = self.generateCoins(fname, challenge)
+                self.items.append(c)
+                        
+                
+            #Gems and art pieces
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 45:            
+                if nRandom >= 46 and nRandom <= 85:
+                    for i in range(random.randint(1,6)):
+                        fname = "gemstone"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                elif nRandom >= 86 and nRandom <= 100:
+                    for i in range(random.randint(1,4)):
+                        fname = "artpiece"
+                        goa = self.generateGemOrArt(fname)
+                        self.items.append(goa)
+                
+            #Mundane and magic objects
+            nRandom = random.randint(1,100)
+            print
+            print
+            print (nRandom)
+            print
+            print
+            if nRandom > 48:
+                if nRandom >= 49 and nRandom <= 96:
+                    for i in range(random.randint(1,3)):
+                        o = self.classObjectMagic("minor")
+                        self.items.append(o)
+                elif nRandom >= 97 and nRandom <= 100:
+                    for i in range(random.randint(1,1)):
+                        o = self.classObjectMagic("medium")
+                        self.items.append(o)
+        
+        self.calculateValue()
+        self.diferenceValue(challenge)
+            
 
     def generateMagicObject(self, fname, typeMagic):
         print ("Generating magic object")
@@ -208,7 +625,7 @@ class Treasure:
         for line in infile:
             listOMagic.append(line)
         
-        #Select a random shield
+        #Select a random object
         mObject = random.sample(listOMagic, 1)
         mObject = mObject[0].split(':')
         
@@ -232,201 +649,335 @@ class Treasure:
             if nRandom >= 1 and nRandom <= 4:
                 #Magic armor
                 fname = "minorArmor"
-                armorBase = self.generateArmor(True)
+                print ("Armadura/Escudo menor")
                 
-                magicArmor = self.generateMagicObject(fname, typeMagic)
-                armorBase.setName(armorBase.getName + ' ' + magicArmor.getName)
-                armorBase.setValue(armorBase.getValue + magicArmor.getValue)
-                
-                self.items.append(armorBase)
-                self.value += armorBase.value
+                a = self.generateArmor()
+                a.setValue(0)
+                return a                
                 
             elif nRandom >= 5 and nRandom <= 9:
                 #Magic weapon
                 fname = "minorWeapon"
                 weaponBase = self.generateWeapon(True)
                 
-                magicWeapon = self.generateMagicObject(fname, typeMagic)
-                weaponBase.setName(weaponBase.getName + ' ' + magicWeapon.getName)
-                weaponBase.setValue(weaponBase.getValue + magicWeapon.getValue)
+                #Random
+                flag = False
+                while flag is False:
+                    nRandom = random.randint(1,100)
+                    if nRandom >= 1 and nRandom <= 70:
+                        name = "+1"
+                        value = 2000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True
+                        
+                    elif nRandom >= 71 and nRandom <= 85:
+                        name = "+2"
+                        value = 8000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True
+                        
+                    elif nRandom >= 86 and nRandom <= 90:
+                        fname = "minorSpecificWeapon"
+                        weaponBase = self.generateMagicObject(fname, typeMagic)
+                        flag = True
+                        
+                    elif nRandom >= 91 and nRandom <= 100:
+                        if "distancia" in weaponBase.getTypeWeapon():
+                            fname = "minorDistanceWeapon"
+                        magicWeapon = self.generateMagicObject(fname, typeMagic)
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + magicWeapon.getValue)
+                        
                 
-                self.items.append(weaponBase)
-                self.value += weaponBase.value
+                return weaponBase
                 
             elif nRandom >= 10 and nRandom <= 44:
                 #Potion
                 fname = "minorPotion"
                 potion = self.generateMagicObject(fname, typeMagic)
-                potion.setName(potion.getName + ' ' + "potion")
+                newName = potion.getName() + ' ' + "potion"
+                potion.setName(newName)
                 
-                self.items.append(potion)
-                self.value += potion.value
+                return potion
                 
             elif nRandom >= 45 and nRandom <= 46:
                 #Ring
                 fname = "minorRing"
                 ring = self.generateMagicObject(fname, typeMagic)
-                ring.setName(ring.getName + ' ' + "ring")                
+                newName = ring.getName() + ' ' + "ring"
+                ring.setName(newName)                
                 
-                self.items.append(ring)
-                self.value += ring.value
+                return ring
                 
             elif nRandom >= 47 and nRandom <= 81:
                 #Scroll
                 fname = "minorScroll"
+                print ("pergamino menor")                
+                a = self.generateWeapon()
+                a.setValue(0)
+                return a                
+                
             elif nRandom >= 82 and nRandom <= 91:
                 #Wand
                 fname = "minorWand"
                 wand = self.generateMagicObject(fname, typeMagic)
-                wand.setName(wand.getName + ' ' + "wand")
+                newName = wand.getName() + ' ' + "wand"
+                wand.setName(newName)
                 
-                self.items.append(wand)
-                self.value += wand.value
+                return wand
             elif nRandom >= 92 and nRandom <= 100:
                 #Wonderful item
                 fname = "minorWonderful"
                 wonder = self.generateMagicObject(fname, typeMagic)
                 
-                self.items.append(wonder)
-                self.value += wonder.value
+                return wonder
                 
         elif typeMagic is "medium":
             if nRandom >= 1 and nRandom <= 10:
                 #Magic armor
                 fname = "mediumArmor"
-                armorBase = self.generateArmor(True)
-                
-                magicArmor = self.generateMagicObject(fname, typeMagic)
-                armorBase.setName(armorBase.getName + ' ' + magicArmor.getName)
-                armorBase.setValue(armorBase.getValue + magicArmor.getValue)
-                
-                self.items.append(armorBase)
-                self.value += armorBase.value
+                print ("Armadura/Escudo intermedio")                
+                a = self.generateArmor()
+                a.setValue(0)
+                return a    
                 
             elif nRandom >= 11 and nRandom <= 20:
                 #Magic weapon
                 fname = "mediumWeapon"
                 weaponBase = self.generateWeapon(True)
                 
-                magicWeapon = self.generateMagicObject(fname, typeMagic)
-                weaponBase.setName(weaponBase.getName + ' ' + magicWeapon.getName)
-                weaponBase.setValue(weaponBase.getValue + magicWeapon.getValue)
+                #Random
+                flag = False
+                while flag is False:
+                    nRandom = random.randint(1,100)
+                    if nRandom >= 1 and nRandom <= 10:
+                        name = "+1"
+                        value = 2000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True
+                        
+                    elif nRandom >= 11 and nRandom <= 20:
+                        name = "+2"
+                        value = 8000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True
+                    
+                    elif nRandom >= 21 and nRandom <= 58:
+                        name = "+3"
+                        value = 18000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True                    
+                    
+                    elif nRandom >= 59 and nRandom <= 62:
+                        name = "+4"
+                        value = 32000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True                    
+                    
+                    elif nRandom >= 63 and nRandom <= 68:
+                        fname = "mediumSpecificWeapon"
+                        weaponBase = self.generateMagicObject(fname, typeMagic)
+                        flag = True
+                        
+                    elif nRandom >= 69 and nRandom <= 100:
+                        if "distancia" in weaponBase.getTypeWeapon():
+                            fname = "minorDistanceWeapon"
+                        magicWeapon = self.generateMagicObject(fname, typeMagic)
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + magicWeapon.getValue)
+                        
                 
-                self.items.append(weaponBase)
-                self.value += weaponBase.value
+                return weaponBase
                 
             elif nRandom >= 21 and nRandom <= 30:
                 #Potion
                 fname = "mediumPotion"
                 potion = self.generateMagicObject(fname, typeMagic)
-                potion.setName(potion.getName + ' ' + "potion")
+                newName = potion.getName() + ' ' + "potion"
+                potion.setName(newName)
                 
-                self.items.append(potion)
-                self.value += potion.value
+                return potion
                 
             elif nRandom >= 31 and nRandom <= 40:
                 #Ring
                 fname = "mediumRing"
                 ring = self.generateMagicObject(fname, typeMagic)
-                ring.setName(ring.getName + ' ' + "ring")                
+                newName = ring.getName() + ' ' + "ring"
+                ring.setName(newName)                 
                 
-                self.items.append(ring)
-                self.value += ring.value
+                return ring
                 
             elif nRandom >= 41 and nRandom <= 50:
                 #Rod
                 fname = "mediumRod"
+                rod = self.generateMagicObject(fname, typeMagic)
+                newName = rod.getName() + ' ' + "rod"
+                rod.setName(newName)
+                
+                return rod
             elif nRandom >= 51 and nRandom <= 65:
                 #Scroll
                 fname = "mediumScroll"
+                print ("pergamino intermedio")                
+                a = self.generateArmor()
+                a.setValue(0)
+                return a
+                
             elif nRandom >= 66 and nRandom <= 68:
                 #Staff
                 fname = "mediumStaff"
+                staff = self.generateMagicObject(fname, typeMagic)
+                newName = staff.getName() + ' ' + "staff"
+                staff.setName(newName)
+                
+                return staff
+                
             elif nRandom >= 69 and nRandom <= 83:
                 #Wand
                 fname = "mediumWand"
                 wand = self.generateMagicObject(fname, typeMagic)
-                wand.setName(wand.getName + ' ' + "wand")
+                newName = wand.getName() + ' ' + "wand"
+                wand.setName(newName)
                 
-                self.items.append(wand)
-                self.value += wand.value
+                return wand
                 
             elif nRandom >= 84 and nRandom <= 100:
                 #Wonderful item
                 fname = "mediumWonderful"
                 wonder = self.generateMagicObject(fname, typeMagic)
                 
-                self.items.append(wonder)
-                self.value += wonder.value
+                return wonder
             
         elif typeMagic is "major":
             if nRandom >= 1 and nRandom <= 10:
                 #Magic armor
                 fname = "majorArmor"
-                armorBase = self.generateArmor(True)
-                
-                magicArmor = self.generateMagicObject(fname, typeMagic)
-                armorBase.setName(armorBase.getName + ' ' + magicArmor.getName)
-                armorBase.setValue(armorBase.getValue + magicArmor.getValue)
-                
-                self.items.append(armorBase)
-                self.value += armorBase.value
+                print ("Armadura/Escudo mayor")                
+                a = self.generateArmor()
+                a.setValue(0)
+                return a    
                 
             elif nRandom >= 11 and nRandom <= 20:
                 #Magic weapon
                 fname = "majorWeapon"
                 weaponBase = self.generateWeapon(True)
                 
-                magicWeapon = self.generateMagicObject(fname, typeMagic)
-                weaponBase.setName(weaponBase.getName + ' ' + magicWeapon.getName)
-                weaponBase.setValue(weaponBase.getValue + magicWeapon.getValue)
+                #Random
+                flag = False
+                while flag is False:
+                    nRandom = random.randint(1,100)
+                    if nRandom >= 1 and nRandom <= 20:
+                        name = "+3"
+                        value = 18000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True
+                        
+                    elif nRandom >= 21 and nRandom <= 38:
+                        name = "+4"
+                        value = 32000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True
+                    
+                    elif nRandom >= 39 and nRandom <= 49:
+                        name = "+5"
+                        value = 50000
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + value)
+                        flag = True                    
+                    
+                    elif nRandom >= 50 and nRandom <= 63:
+                        fname = "majorSpecificWeapon"
+                        weaponBase = self.generateMagicObject(fname, typeMagic)
+                        flag = True
+                        
+                    elif nRandom >= 64 and nRandom <= 100:
+                        if "distancia" in weaponBase.getTypeWeapon():
+                            fname = "minorDistanceWeapon"
+                        magicWeapon = self.generateMagicObject(fname, typeMagic)
+                        newName = weaponBase.getName() + ' ' + name
+                        weaponBase.setName(newName)
+                        weaponBase.setValue(weaponBase.getValue() + magicWeapon.getValue)
+                        
                 
-                self.items.append(weaponBase)
-                self.value += weaponBase.value
+                return weaponBase
                 
             elif nRandom >= 21 and nRandom <= 25:
                 #Potion
                 fname = "majorPotion"
                 potion = self.generateMagicObject(fname, typeMagic)
-                potion.setName(potion.getName + ' ' + "potion")
+                newName = potion.getName() + ' ' + "potion"
+                potion.setName(newName)
                 
-                self.items.append(potion)
-                self.value += potion.value
+                return potion
                 
             elif nRandom >= 26 and nRandom <= 35:
                 #Ring
                 fname = "majorRing"
                 ring = self.generateMagicObject(fname, typeMagic)
-                ring.setName(ring.getName + ' ' + "ring")                
+                newName = ring.getName() + ' ' + "ring"
+                ring.setName(newName)                 
                 
-                self.items.append(ring)
-                self.value += ring.value
+                return ring
                 
             elif nRandom >= 36 and nRandom <= 45:
                 #Rod
                 fname = "majorRod"
+                rod = self.generateMagicObject(fname, typeMagic)
+                rod.setName(rod.getName() + ' ' + "rod")
+                
+                return rod
+                
             elif nRandom >= 46 and nRandom <= 55:
                 #Scroll
                 fname = "majorScroll"
+                print ("pergamino mayor")                
+                a = self.generateArmor()
+                a.setValue(0)
+                return a
+                
             elif nRandom >= 56 and nRandom <= 75:
                 #Staff
                 fname = "majorStaff"
+                staff = self.generateMagicObject(fname, typeMagic)
+                newName = staff.getName() + ' ' + "staff"
+                staff.setName(newName)
+                
+                return staff
+                
             elif nRandom >= 76 and nRandom <= 80:
                 #Wand
                 fname = "majorWand"
                 wand = self.generateMagicObject(fname, typeMagic)
-                wand.setName(wand.getName + ' ' + "wand")
+                newName = wand.getName() + ' ' + "wand"
+                wand.setName(newName)
                 
-                self.items.append(wand)
-                self.value += wand.value
+                return wand
                 
             elif nRandom >= 81 and nRandom <= 100:
                 #Wonderful item
                 fname = "majorWonderful"
                 wonder = self.generateMagicObject(fname, typeMagic)
                 
-                self.items.append(wonder)
-                self.value += wonder.value
+                return wonder
                 
         return fname
             
@@ -662,17 +1213,25 @@ class Treasure:
         print ("Calculating diference of actual value with the minimum value")
         rest = self.value - self.minimumValue(challenge)
         if rest < 0:        
+            c = Coin()
+            c.setTypeCoin("gold")
+            c.setValue(self.value - rest)
+            self.items.append(c)            
             self.setValue(self.value - rest)
+            
         
-        
+        #8, 8, 7, 5, 8
         
 if __name__ == "__main__":
     t = Treasure()
-    weapon = t.generateWeapon(True)
-    print (weapon.getName())
-    print (weapon.getValue())
-    print (weapon.getlDamage())
-    print (weapon.getmDamage())
-    print (weapon.getTypeWeapon())
-    print (weapon.getTypeDamage())
-    print (weapon.getCritical())
+    t.generateTreasure(5)
+    
+    tesoro = t.getItems()
+    for i in tesoro:
+        if type(i) is Coin:
+            print (i.getTypeCoin())
+            print (i.getValue())
+        else:
+            print (i.getName())
+            print (i.getValue())
+    print ("Hasta aqui sin ningun fallo")
